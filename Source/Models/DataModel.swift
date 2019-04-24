@@ -6,26 +6,22 @@
 //
 
 import Foundation
-import XMLMapper
 
-internal struct DataModel: Codable, XMLMappable {
+internal struct DataModel: Codable {
     public var title: String?
     public var phone: String?
     
     enum CodingKeys: String, CodingKey {
-        case title
-        case phone
+        case title = "#title"
+        case phone = "#phone"
     }
     
-    // XML Mapping
-    public var nodeName: String! = "data"
-    
-    public init?(map: XMLMap) {
+    public init?(map: [String: Any]) {
         self.mapping(map: map)
     }
     
-    public mutating func mapping(map: XMLMap) {
-        title <- map["title"]
-        phone <- map["phone"]
+    public mutating func mapping(map: [String: Any]) {
+        title = map[CodingKeys.title.rawValue] as? String
+        phone = map[CodingKeys.phone.rawValue] as? String
     }
 }
