@@ -34,19 +34,19 @@ class PhoneCallViewController: UIAlertController, BaseViewControllerType {
         super.viewDidLoad()
         
         guard let phone = self.data?.phone, let url = URL(string: "tel:\(phone)") else {
-            self.title = NSLocalizedString("core_invalidPhoneNumberAlertTitle", comment: "Invalid phone number")
-            self.message = NSLocalizedString("core_invalidPhoneNumberAlertTitle", comment: "Invalid phone number")
-            self.addAction(UIAlertAction(title: NSLocalizedString("core_invalidPhoneNumberOkButtonTitle", comment: "OK"), style: .default))
+            self.title = NSLocalizedString("Core.Message.InvalidPhoneNumber.Title", comment: "Invalid phone number")
+            self.message = NSLocalizedString("Core.Message.InvalidPhoneNumber.Body", comment: "Invalid phone number")
+            self.addAction(UIAlertAction(title: NSLocalizedString("Common.Text.Ok", comment: "OK"), style: .default))
             return
         }
         
         self.message = phone
         
-        let cancelAction = UIAlertAction(title: NSLocalizedString("core_callNumberAlertCancelButtonTitle", comment: "Cancel"), style: .default, handler: nil)
+        let cancelAction = UIAlertAction(title: NSLocalizedString("Common.Text.Cancel", comment: "Cancel"), style: .default, handler: nil)
         
         self.addAction(cancelAction)
         
-        let callAction = UIAlertAction(title: NSLocalizedString("core_callNumberAlertCallButtonTitle", comment: "Call"), style: .default) { _ in
+        let callAction = UIAlertAction(title: NSLocalizedString("Common.Text.Call", comment: "Call"), style: .default) { _ in
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
         
