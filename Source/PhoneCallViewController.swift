@@ -11,6 +11,7 @@ import AppBuilderCoreUI
 
 class PhoneCallViewController: UIAlertController, BaseViewControllerType {
     var options: TransitionOptions?
+    var showLogin: Bool = false
     
     // MARK: - Private properties
     /// Widget type indentifier
