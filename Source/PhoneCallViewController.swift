@@ -6,8 +6,8 @@
 //
 
 import Foundation
-import AppBuilderCore
-import AppBuilderCoreUI
+import IBACore
+import IBACoreUI
 
 class PhoneCallViewController: UIAlertController, BaseViewControllerType {
     var options: TransitionOptions?
