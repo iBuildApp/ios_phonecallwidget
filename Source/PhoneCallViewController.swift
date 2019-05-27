@@ -25,14 +25,6 @@ class PhoneCallViewController: UIAlertController, BaseViewControllerType {
         self.init()
         self.type = type
         self.data = data
-    }
-    
-    override var preferredStyle: UIAlertController.Style {
-        return .alert
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
         
         guard let phone = self.data?.phone, let url = URL(string: "tel:\(phone)") else {
             self.title = Localization.Core.Message.InvalidPhoneNumber.title
@@ -52,5 +44,9 @@ class PhoneCallViewController: UIAlertController, BaseViewControllerType {
         }
         
         self.addAction(callAction)
+    }
+    
+    override var preferredStyle: UIAlertController.Style {
+        return .alert
     }
 }

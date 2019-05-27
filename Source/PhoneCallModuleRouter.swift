@@ -30,6 +30,23 @@ public class PhoneCallModuleRouter: BaseRouter<PhoneCallModuleRoute> {
     }
     
     public override func rootTransition() -> RouteTransition {
-        return self.prepareTransition(for: .root)
+        if #available(iOS 10.3, *) {
+            guard let phone = module?.data?.phone, let url = URL(string: "tel:\(phone)") else {
+                if let rootController = UIApplication.shared.keyWindow?.rootViewController {
+                    rootController.showAlertController(title: Localization.Core.Message.InvalidPhoneNumber.title, message: Localization.Core.Message.InvalidPhoneNumber.body, buttonTitle: Localization.Common.Text.ok)
+                }
+                return RouteTransition()
+            }
+            if UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            } else {
+                if let rootController = UIApplication.shared.keyWindow?.rootViewController {
+                    rootController.showAlertController(title: Localization.Core.Message.CantCall.title, message: Localization.Core.Message.CantCall.body, buttonTitle: Localization.Common.Text.ok)
+                }
+            }
+            return RouteTransition()
+        } else {
+            return self.prepareTransition(for: .root)
+        }
     }
 }
