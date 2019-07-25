@@ -20,12 +20,7 @@ public class PhoneCallModule: BaseModule, ModuleType {
     internal var data: DataModel?
     
     public override class func canHandle(config: WidgetModel) -> Bool {
-        switch config.type {
-        case "taptocall":
-            return true
-        default:
-            return false
-        }
+        return config.type == "taptocall"
     }
     
     public required init() {
