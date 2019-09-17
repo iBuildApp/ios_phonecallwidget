@@ -19,6 +19,10 @@ public class PhoneCallModuleRouter: BaseRouter<PhoneCallModuleRoute> {
         self.module = module
     }
     
+    public override var hasViewController: Bool {
+        return false
+    }
+    
     public override func generateRootViewController() -> BaseViewControllerType {
         return PhoneCallViewController(type: module?.config?.type, data: module?.data)
     }
